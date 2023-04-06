@@ -236,6 +236,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   _activated: 0
+  _rangeSize: 1
+  _rangeLength: 3
+  _disableRadius: 5
   _strength: 3
 --- !u!4 &364170422
 Transform:
