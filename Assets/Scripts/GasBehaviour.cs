@@ -50,6 +50,10 @@ public class GasBehaviour : MonoBehaviour
 
     public void MovingToVacuum(bool isMoving, float strength = -1, Transform vacuum = null)
     {
+        if (_movingToVacuum)
+        {
+            return;
+        }
         if (isMoving)
         {
             if (vacuum == null)
