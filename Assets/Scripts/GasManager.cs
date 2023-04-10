@@ -10,11 +10,6 @@ public class GasManager : MonoBehaviour
     [SerializeField] private Transform _gasParent;
     [SerializeField] private GasBehaviour _gasObj;
 
-    [Header("Gas Spawning")]
-    [SerializeField][Tooltip("0 = Easiest, 1 = Hardest")][Range(0, 1)] private float _difficulty;
-    [SerializeField] private AnimationCurve _spawnDelay;
-    [SerializeField] private int _maxGasCount;
-
     [Header("Timing")]
     private float _curCooldownTime;
 
@@ -60,6 +55,6 @@ public class GasManager : MonoBehaviour
 
         GasSpawner spawner = availableSpawners[Random.Range(0, availableSpawners.Count)];
         spawner.SpawnGas(_gasObj, _gasParent);
-        _curCooldownTime = _spawnDelay.Evaluate(_difficulty);
+        _curCooldownTime = GameManager.main.GetCooldownTime();
     }
 }
