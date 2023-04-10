@@ -36,8 +36,6 @@ public class GasBehaviour : MonoBehaviour
         {
             if (_movingToVacuum)
             {
-                _particles.Stop();
-                GetComponent<Collider>().enabled = false;
                 StartCoroutine(TriggerDeath());
                 return;
             }
@@ -46,7 +44,7 @@ public class GasBehaviour : MonoBehaviour
         else
         {
             Vector3 direction = _target - transform.position;
-            transform.position += direction.normalized * (_movingToVacuum ? _activeSpeed : _ambientSpeed) * Time.deltaTime;
+            transform.position += (_movingToVacuum ? _activeSpeed : _ambientSpeed) * Time.deltaTime * direction.normalized;
         }
     }
 
@@ -75,6 +73,9 @@ public class GasBehaviour : MonoBehaviour
 
     private IEnumerator TriggerDeath()
     {
+        _particles.Stop();
+        GetComponent<Collider>().enabled = false;
+        transform.SetParent(null);
         yield return new WaitForSeconds(3.5f);
         Destroy(gameObject);
     }

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GasManager : MonoBehaviour
 {
+    public static GasManager main;
+
     [SerializeField] private GasSpawner[] _spawners;
     [SerializeField] private Transform _gasParent;
     [SerializeField] private GasBehaviour _gasObj;
@@ -16,6 +18,21 @@ public class GasManager : MonoBehaviour
     [Header("Timing")]
     private float _curCooldownTime;
 
+    public int GasCount => _gasParent.childCount;
+    public float GasRatio => (float)_gasParent.childCount / _maxGasCount;
+
+    private void Awake()
+    {
+        if (main == null)
+        {
+            main = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
+
     void Update()
     {
         if (_curCooldownTime > 0)
@@ -23,15 +40,10 @@ public class GasManager : MonoBehaviour
             _curCooldownTime -= Time.deltaTime;
         }
 
-        if (_curCooldownTime <= 0 && GasCount() < _maxGasCount)
+        if (_curCooldownTime <= 0 && GasCount < _maxGasCount)
         {
             SpawnGas();
         }
-    }
-
-    private int GasCount()
-    {
-        return _gasParent.childCount;
     }
 
     private void SpawnGas()
