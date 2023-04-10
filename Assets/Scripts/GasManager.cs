@@ -19,7 +19,7 @@ public class GasManager : MonoBehaviour
     private float _curCooldownTime;
 
     public int GasCount => _gasParent.childCount;
-    public float GasRatio => (float)_gasParent.childCount / _maxGasCount;
+    public float GasRatio => (float)_gasParent.childCount / GameManager.main.MaxGas;
 
     private void Awake()
     {
@@ -40,7 +40,7 @@ public class GasManager : MonoBehaviour
             _curCooldownTime -= Time.deltaTime;
         }
 
-        if (_curCooldownTime <= 0 && GasCount < _maxGasCount)
+        if (_curCooldownTime <= 0 && GasCount < GameManager.main.MaxGas && _spawners.Length != 0)
         {
             SpawnGas();
         }
