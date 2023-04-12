@@ -1,0 +1,64 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class PlayerMovement : MonoBehaviour
+{
+    public Rigidbody rb;
+    public float moveSpeed = 5f;
+
+    Vector3 moveDirection = Vector3.zero;
+
+    public float groundDistance;
+
+    public float mouseSensitivity = 25f;
+    public float xRot = 0f;
+    public Transform playerCamera;
+
+
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    public void OnMove(InputValue value)
+    {
+        Vector2 valueVect = value.Get<Vector2>();
+        moveDirection = new Vector3(valueVect.x, 0, valueVect.y);
+    }
+
+    public void OnJump(InputValue value)
+    {
+
+        if (IsGrounded() == true)
+        {
+            GetComponent<Rigidbody>().AddForce(transform.up * 5, ForceMode.Impulse);
+        }
+    }
+
+    public void OnLook(InputValue value)
+    {
+        float mouseX = value.Get<Vector2>().x * mouseSensitivity * Time.deltaTime;
+        float mouseY = value.Get<Vector2>().y * mouseSensitivity * Time.deltaTime;
+
+        xRot -= mouseY;
+        xRot = Mathf.Clamp(xRot, -90f, 90f);
+
+        playerCamera.localRotation = Quaternion.Euler(xRot, 0f, 0f);
+        transform.Rotate(Vector3.up * mouseX);
+    }
+
+    private bool IsGrounded()
+    {
+        bool IsGrounded = Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 1.1f);
+        return IsGrounded;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        transform.position += transform.forward * moveDirection.z * moveSpeed * Time.deltaTime;
+        transform.position += transform.right * moveDirection.x * moveSpeed * Time.deltaTime;
+    }
+}
