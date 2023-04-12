@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public Rigidbody rb;
     public float moveSpeed = 5f;
+    [SerializeField] private VacuumBehaviour _vacuum;
 
     Vector3 moveDirection = Vector3.zero;
 
@@ -37,6 +38,11 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void OnFire(InputValue value)
+    {
+        _vacuum.SetActive(value.isPressed);
+    }
+
     public void OnLook(InputValue value)
     {
         float mouseX = value.Get<Vector2>().x * mouseSensitivity * Time.deltaTime;
@@ -53,11 +59,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (value.isPressed)
         {
-            moveSpeed = 10f;
+            moveSpeed = 4f;
         }
         else
         {
-            moveSpeed = 5f;
+            moveSpeed = 2.5f;
         }
     }
 
