@@ -214,11 +214,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02e9ea510c26c494d9b4092e1323ea33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 0}
+  rb: {fileID: 2187918679831663997}
   moveSpeed: 2.5
   _vacuum: {fileID: 4557453073100004159}
   groundDistance: 0
-  mouseSensitivity: 100
+  mouseSensitivity: 25
   xRot: 0
   playerCamera: {fileID: 2187918677818385906}
 --- !u!114 &2187918679831663999

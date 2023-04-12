@@ -33,6 +33,13 @@ public class GasSpawner : MonoBehaviour
 
         _boundary.SetSize(-size / 2f, size / 2f);
     }
+
+    public float GetVolume()
+    {
+        Vector3 size = _boundary.GetSize();
+
+        return size.x * size.y * size.z;
+    }
 }
 
 [System.Serializable]
@@ -53,8 +60,6 @@ public class Boundary
     }
     public Vector3 GetCenter()
     {
-        
-
         Vector3 position = new(
             (_min.x + _max.x) / 2f,
             (_min.y + _max.y) / 2f,
@@ -76,7 +81,7 @@ public class Boundary
         Vector3 position = new(
             Random.Range(_min.x, _max.x),
             Random.Range(_min.y, _max.y),
-            Random.Range(_min.x, _max.z));
+            Random.Range(_min.z, _max.z));
 
         return position + _center.position;
     }
