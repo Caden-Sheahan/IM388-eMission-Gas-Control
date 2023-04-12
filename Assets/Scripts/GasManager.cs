@@ -41,20 +41,44 @@ public class GasManager : MonoBehaviour
         }
     }
 
+    public void InitialGas(int gasCount)
+    {
+        for (int i = 0; i < gasCount; i++)
+        {
+            SpawnGas();
+        }
+    }
+
     private void SpawnGas()
     {
-        List<GasSpawner> availableSpawners = new();
+        GasSpawner spawner = RandomWeightedSpawner();
+        spawner.SpawnGas(_gasObj, _gasParent);
+        _curCooldownTime = GameManager.main.GetCooldownTime();
+    }
+
+    private GasSpawner RandomWeightedSpawner()
+    {
+        Dictionary<GasSpawner, float> availableSpawners = new();
+        float total = 0;
 
         foreach (GasSpawner curSpawner in _spawners)
         {
             if (curSpawner.Activated)
             {
-                availableSpawners.Add(curSpawner);
+                availableSpawners.Add(curSpawner, total += curSpawner.GetVolume());
             }
         }
 
-        GasSpawner spawner = availableSpawners[Random.Range(0, availableSpawners.Count)];
-        spawner.SpawnGas(_gasObj, _gasParent);
-        _curCooldownTime = GameManager.main.GetCooldownTime();
+        float value = Random.Range(0, total);
+
+        foreach (GasSpawner curSpawner in _spawners)
+        {
+            if (value < availableSpawners[curSpawner])
+            {
+                return curSpawner;
+            }
+        }
+
+        return _spawners[^1];
     }
 }

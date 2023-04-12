@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private AnimationCurve _spawnDelay;
     [SerializeField] [Range(0, 0.5f)] private float _winRatio;
     [SerializeField] [Range(0, 0.5f)] private float _loseRatio;
+    [SerializeField] [Range(0, 1)] private float _startingRatio;
     [SerializeField] private int _maxGas;
 
     [Header("Game UI")]
@@ -45,6 +46,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GasManager.main.InitialGas(Mathf.RoundToInt(_startingRatio * _maxGas));
         ResetTimer();
     }
 
