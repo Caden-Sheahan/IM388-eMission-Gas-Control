@@ -76,7 +76,6 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += transform.forward * moveDirection.z * moveSpeed * Time.deltaTime;
-        transform.position += transform.right * moveDirection.x * moveSpeed * Time.deltaTime;
+        rb.velocity = (transform.forward * moveDirection.z + transform.right * moveDirection.x) * moveSpeed + rb.velocity.y * Vector3.up;
     }
 }
