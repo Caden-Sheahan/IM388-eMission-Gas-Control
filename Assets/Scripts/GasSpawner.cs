@@ -5,14 +5,13 @@ using UnityEngine;
 public class GasSpawner : MonoBehaviour
 {
     [SerializeField] private bool _activated;
-    [SerializeField] private Boundary[] _boundaries;
+    [SerializeField] private Boundary _boundary;
 
     public bool Activated => _activated;
 
     public void SpawnGas(GasBehaviour gasObj, Transform parent)
     {
-        Boundary selectedBoundary = _boundaries[Random.Range(0, _boundaries.Length)];
-        Vector3 spawnPoint = selectedBoundary.RandomPoint();
+        Vector3 spawnPoint = _boundary.RandomPoint();
         GasBehaviour curGas = Instantiate(gasObj, spawnPoint, Quaternion.identity);
         curGas.Init();
 
@@ -21,12 +20,18 @@ public class GasSpawner : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        foreach (Boundary curBoundary in _boundaries)
-        {
-            //Gizmos.color = _activated ? Color.white : Color.red;
-            Gizmos.color = new Color(1, _activated ? 1:0, _activated ? 1 : 0, 0.5f);
-            Gizmos.DrawCube(curBoundary.GetCenter(), curBoundary.GetSize());
-        }
+        Gizmos.color = new Color(1, _activated ? 1 : 0, _activated ? 1 : 0, 0.5f);
+        Gizmos.DrawCube(_boundary.GetCenter(), _boundary.GetSize());
+    }
+
+    public void Simplify()
+    {
+        Vector3 center = _boundary.GetCenter();
+        Vector3 size = _boundary.GetSize();
+
+        transform.position = center;
+
+        _boundary.SetSize(-size / 2f, size / 2f);
     }
 }
 
@@ -41,6 +46,11 @@ public class Boundary
     [SerializeField]
     private Vector3 _max;
 
+    public void SetSize(Vector3 minSize, Vector3 maxSize)
+    {
+        _min = minSize;
+        _max = maxSize;
+    }
     public Vector3 GetCenter()
     {
         

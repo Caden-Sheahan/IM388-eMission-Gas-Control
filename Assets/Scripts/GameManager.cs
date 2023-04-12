@@ -4,7 +4,15 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public enum GameStatus { Losing, Middle, Winning }
+
     public static GameManager main;
+
+    [Header("Game Manager")]
+    [SerializeField] private GameStatus _status;
+    [SerializeField] private float _winTime;
+    [SerializeField] private float _loseTime;
+    private float _curTimer;
 
     [Header("Gas Management")]
     [SerializeField] [Tooltip("0 = Easiest, 1 = Hardest")] [Range(0, 1)] private float _difficulty;
@@ -32,17 +40,57 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        ResetTimer();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (GasManager.main.GasRatio <= _winRatio)
+        {
+            if (_status != GameStatus.Winning)
+            {
+                _status = GameStatus.Winning;
+                _curTimer = _winTime;
+            }
+        }
+        else if (GasManager.main.GasRatio >= 1 - _loseRatio)
+        {
+            if (_status != GameStatus.Losing)
+            {
+                _status = GameStatus.Losing;
+                _curTimer = _loseTime;
+            }
+        }
+        else
+        {
+            _status = GameStatus.Middle;
+        }
+
+        if (_status != GameStatus.Middle)
+        {
+            _curTimer -= Time.deltaTime;
+            if (_curTimer <= 0)
+            {
+                if (_status == GameStatus.Winning)
+                {
+                    print("You win!");
+                }
+                else
+                {
+                    print("You lose!");
+                }
+            }
+        }
     }
 
     public float GetCooldownTime()
     {
         return _spawnDelay.Evaluate(_difficulty);
+    }
+
+    private void ResetTimer()
+    {
+        _curTimer = float.MaxValue;
     }
 }
