@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -21,6 +22,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] [Range(0, 0.5f)] private float _loseRatio;
     [SerializeField] [Range(0, 1)] private float _startingRatio;
     [SerializeField] private int _maxGas;
+
+    [Header("Game UI")]
+    [SerializeField] private GameObject _gameOverUI;
+    [SerializeField] private TMP_Text _gameOverMessage;
 
     public float WinRatio => _winRatio;
     public float LoseRatio => _loseRatio;
@@ -74,13 +79,17 @@ public class GameManager : MonoBehaviour
             _curTimer -= Time.deltaTime;
             if (_curTimer <= 0)
             {
+                _gameOverUI.SetActive(true);
+                // disable controls for the player here so only UI is interactive
                 if (_status == GameStatus.Winning)
                 {
                     print("You win!");
+                    _gameOverMessage.text = "You Win!";
                 }
                 else
                 {
                     print("You lose!");
+                    _gameOverMessage.text = "You Lose...";
                 }
             }
         }

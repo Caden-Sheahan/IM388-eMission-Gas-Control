@@ -2,18 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
-    public Slider gasCount;
-    public RectTransform winZone;
-    public RectTransform loseZone;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
+    [Header("HUD")]
+    public Slider gasCount; // slider showing how much gas there is in game
+    public RectTransform winZone; // slider zone for winning
+    public RectTransform loseZone; // slider zone for losing
 
     // Update is called once per frame
     void Update()
@@ -22,4 +18,18 @@ public class UIManager : MonoBehaviour
         winZone.sizeDelta = new Vector2(600 * GameManager.main.WinRatio, 10);
         loseZone.sizeDelta = new Vector2(600 * GameManager.main.LoseRatio, 10);
     }
+
+    #region Button Functions
+
+    /// <summary>
+    /// In inspector, pass in the Build Index value of the scene to be loaded
+    /// on the button you use to progress to a new scene
+    /// </summary>
+    /// <param name="sceneNum"></param>
+    public void LoadScene(int sceneNum)
+    {
+        SceneManager.LoadScene(sceneNum);
+    }
+
+    #endregion
 }
