@@ -49,6 +49,18 @@ public class PlayerMovement : MonoBehaviour
         transform.Rotate(Vector3.up * mouseX);
     }
 
+    public void OnSprint(InputValue value)
+    {
+        if (value.isPressed)
+        {
+            moveSpeed = 10f;
+        }
+        else
+        {
+            moveSpeed = 5f;
+        }
+    }
+
     private bool IsGrounded()
     {
         bool IsGrounded = Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 1.1f);
