@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class GameManager : MonoBehaviour
@@ -24,6 +25,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int _maxGas;
 
     [Header("Game UI")]
+    [SerializeField] private Slider _difficultySlider;
     [SerializeField] private GameObject _gameOverUI;
     [SerializeField] private TMP_Text _gameOverMessage;
 
@@ -48,6 +50,9 @@ public class GameManager : MonoBehaviour
     {
         GasManager.main.InitialGas(Mathf.RoundToInt(_startingRatio * _maxGas));
         ResetTimer();
+
+        _difficultySlider.onValueChanged.AddListener((v) => { _difficulty = v/4; });
+        print(_difficulty);
     }
 
     // Update is called once per frame
