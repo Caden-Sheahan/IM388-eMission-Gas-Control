@@ -87,6 +87,7 @@ public class GameManager : MonoBehaviour
             if (_curTimer <= 0)
             {
                 ActivateUI(GameOverUI);
+                Time.timeScale = 0;
                 // disable controls for the player here so only UI is interactive
                 if (_status == GameStatus.Winning)
                 {
