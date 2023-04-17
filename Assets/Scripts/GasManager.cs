@@ -71,11 +71,11 @@ public class GasManager : MonoBehaviour
 
         float value = Random.Range(0, total);
 
-        foreach (GasSpawner curSpawner in _spawners)
+        foreach (KeyValuePair<GasSpawner,float> curSpawner in availableSpawners)
         {
-            if (value < availableSpawners[curSpawner])
+            if (value < curSpawner.Value)
             {
-                return curSpawner;
+                return curSpawner.Key;
             }
         }
 

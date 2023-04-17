@@ -10,24 +10,29 @@ public class GasBehaviour : MonoBehaviour
     [SerializeField] private float _ambientSpeed;
     [SerializeField] private float _activeSpeed;
     private bool _movingToVacuum;
+    private GasSpawner _associatedSpawner;
 
     private ParticleSystem _particles;
+    [SerializeField] ParticleSystem _gasCenter;
+    [SerializeField] Renderer _sphere;
 
     private void Awake()
     {
         _particles = GetComponent<ParticleSystem>();
     }
 
-    public void Init()
+    public void Init(GasSpawner spawner)
     {
         _center = transform.position;
         _target = _center;
+        _associatedSpawner = spawner;
     }
 
-    public void Init(Vector3 target)
+    public void Init(Vector3 target, GasSpawner spawner)
     {
         _center = transform.position;
         _target = target;
+        _associatedSpawner = spawner;
     }
 
     void Update()
@@ -77,7 +82,10 @@ public class GasBehaviour : MonoBehaviour
 
     private IEnumerator TriggerDeath()
     {
+        _sphere.enabled = false;
+        _associatedSpawner.RemoveGas();
         _particles.Stop();
+        _gasCenter.Stop();
         GetComponent<Collider>().enabled = false;
         transform.SetParent(null);
         yield return new WaitForSeconds(3.5f);
