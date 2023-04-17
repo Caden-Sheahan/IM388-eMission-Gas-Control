@@ -83,12 +83,12 @@ public class GasBehaviour : MonoBehaviour
     private IEnumerator TriggerDeath()
     {
         _sphere.enabled = false;
-        _associatedSpawner.RemoveGas();
         _particles.Stop();
         _gasCenter.Stop();
         GetComponent<Collider>().enabled = false;
         transform.SetParent(null);
         yield return new WaitForSeconds(3.5f);
+        _associatedSpawner.RemoveGas();
         Destroy(gameObject);
     }
 }

@@ -7,7 +7,7 @@ public class GasSpawner : MonoBehaviour
     [SerializeField] private bool _activated;
     [SerializeField] private Boundary _boundary;
 
-    private int _gasCount;
+    [SerializeField] private int _gasCount;
 
     public bool Activated => _activated;
 
