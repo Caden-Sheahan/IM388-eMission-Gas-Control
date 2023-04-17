@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float _winTime;
     [SerializeField] private float _loseTime;
     private float _curTimer;
+    public bool _isGameActive = false;
 
     [Header("Gas Management")]
     [SerializeField] [Tooltip("0 = Easiest, 1 = Hardest")] [Range(0, 1)] private float _difficulty;
@@ -25,8 +26,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int _maxGas;
 
     [Header("Game UI")]
+    [SerializeField] private GameObject HUD;
     [SerializeField] private Slider _difficultySlider;
-    [SerializeField] private GameObject _gameOverUI;
+    [SerializeField] private GameObject GameOverUI;
     [SerializeField] private TMP_Text _gameOverMessage;
 
     public float WinRatio => _winRatio;
@@ -84,7 +86,7 @@ public class GameManager : MonoBehaviour
             _curTimer -= Time.deltaTime;
             if (_curTimer <= 0)
             {
-                _gameOverUI.SetActive(true);
+                ActivateUI(GameOverUI);
                 // disable controls for the player here so only UI is interactive
                 if (_status == GameStatus.Winning)
                 {
@@ -98,6 +100,11 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+
+        if (_isGameActive)
+        {
+            HUD.SetActive(true);
+        }
     }
 
     public float GetCooldownTime()
@@ -108,5 +115,11 @@ public class GameManager : MonoBehaviour
     private void ResetTimer()
     {
         _curTimer = float.MaxValue;
+    }
+
+    private void ActivateUI(GameObject UI)
+    {
+        Cursor.lockState = CursorLockMode.None;
+        UI.SetActive(true);
     }
 }

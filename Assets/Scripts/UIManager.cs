@@ -31,5 +31,12 @@ public class UIManager : MonoBehaviour
         SceneManager.LoadScene(sceneNum);
     }
 
+    public void StartGameplay(string menuName)
+    {
+        GameObject.Find(menuName).SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        GameManager.main._isGameActive = true;
+    }
+
     #endregion
 }
