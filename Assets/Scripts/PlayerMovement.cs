@@ -17,10 +17,16 @@ public class PlayerMovement : MonoBehaviour
     public float xRot = 0f;
     public Transform playerCamera;
 
+    public bool isPaused = false;
+    public GameObject pauseMenu;
+    public bool gameStarted = false;
+
 
     private void Start()
     {
+        isPaused = true;
         Cursor.lockState = CursorLockMode.None;
+        Time.timeScale = 0.0f;
     }
 
     public void OnMove(InputValue value)
@@ -45,14 +51,17 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnLook(InputValue value)
     {
-        float mouseX = value.Get<Vector2>().x * mouseSensitivity * Time.deltaTime;
-        float mouseY = value.Get<Vector2>().y * mouseSensitivity * Time.deltaTime;
+        if (!isPaused)
+        {
+            float mouseX = value.Get<Vector2>().x * mouseSensitivity * Time.deltaTime;
+            float mouseY = value.Get<Vector2>().y * mouseSensitivity * Time.deltaTime;
 
-        xRot -= mouseY;
-        xRot = Mathf.Clamp(xRot, -90f, 90f);
+            xRot -= mouseY;
+            xRot = Mathf.Clamp(xRot, -90f, 90f);
 
-        playerCamera.localRotation = Quaternion.Euler(xRot, 0f, 0f);
-        transform.Rotate(Vector3.up * mouseX);
+            playerCamera.localRotation = Quaternion.Euler(xRot, 0f, 0f);
+            transform.Rotate(Vector3.up * mouseX);
+        }
     }
 
     public void OnSprint(InputValue value)
@@ -77,5 +86,39 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         rb.velocity = (transform.forward * moveDirection.z + transform.right * moveDirection.x) * moveSpeed + rb.velocity.y * Vector3.up;
+    }
+
+    public void OnVacuum(InputValue value)
+    {
+
+    }
+
+    public void OnMaxVac(InputValue value)
+    {
+
+    }
+
+    public void OnPause(InputValue value)
+    {
+        if (gameStarted)
+        {
+            if (!isPaused)
+            {
+                Cursor.lockState = CursorLockMode.None;
+                GameManager.main._isGameActive = false;
+                Time.timeScale = 0.0f;
+                isPaused = true;
+                pauseMenu.SetActive(true);
+            }
+
+            else if (isPaused)
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                GameManager.main._isGameActive = true;
+                Time.timeScale = 1.0f;
+                isPaused = false;
+                pauseMenu.SetActive(false);
+            }
+        }
     }
 }

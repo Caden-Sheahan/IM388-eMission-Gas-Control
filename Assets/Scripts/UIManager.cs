@@ -11,6 +11,8 @@ public class UIManager : MonoBehaviour
     public RectTransform winZone; // slider zone for winning
     public RectTransform loseZone; // slider zone for losing
 
+    public PlayerMovement pm;
+
     // Update is called once per frame
     void Update()
     {
@@ -36,6 +38,9 @@ public class UIManager : MonoBehaviour
         GameObject.Find(menuName).SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         GameManager.main._isGameActive = true;
+        pm.isPaused = false;
+        pm.gameStarted = true;
+        Time.timeScale = 1.0f;
     }
 
     #endregion
