@@ -41,6 +41,7 @@ public class UIManager : MonoBehaviour
         pm.isPaused = false;
         pm.gameStarted = true;
         Time.timeScale = 1.0f;
+        GameManager.main.StartGame();
     }
 
     #endregion

@@ -50,11 +50,14 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GasManager.main.InitialGas(Mathf.RoundToInt(_startingRatio * _maxGas));
-        ResetTimer();
-
         _difficultySlider.onValueChanged.AddListener((v) => { _difficulty = v/4; });
         print(_difficulty);
+    }
+
+    public void StartGame()
+    {
+        GasManager.main.InitialGas(Mathf.RoundToInt(_startingRatio * _maxGas));
+        ResetTimer();
     }
 
     // Update is called once per frame
@@ -123,5 +126,4 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         UI.SetActive(true);
     }
-
 }
