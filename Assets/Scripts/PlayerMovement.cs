@@ -47,6 +47,15 @@ public class PlayerMovement : MonoBehaviour
     public void OnFire(InputValue value)
     {
         _vacuum.SetActive(value.isPressed);
+
+        if (value.isPressed)
+        {
+            moveSpeed = 2f;
+        }
+        else
+        {
+            moveSpeed = 4f;
+        }
     }
 
     public void OnLook(InputValue value)
@@ -66,14 +75,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnSprint(InputValue value)
     {
-        if (value.isPressed)
-        {
-            moveSpeed = 4f;
-        }
-        else
-        {
-            moveSpeed = 2.5f;
-        }
+        
     }
 
     private bool IsGrounded()
