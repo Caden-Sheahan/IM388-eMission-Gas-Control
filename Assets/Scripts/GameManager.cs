@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GasManager.main.GasRatio <= _winRatio)
+        if (GasManager.main.GasRatio < _winRatio)
         {
             if (_status != GameStatus.Winning)
             {
@@ -71,7 +71,7 @@ public class GameManager : MonoBehaviour
                 _curTimer = _winTime;
             }
         }
-        else if (GasManager.main.GasRatio >= 1 - _loseRatio)
+        else if (GasManager.main.GasRatio > 1 - _loseRatio)
         {
             if (_status != GameStatus.Losing)
             {

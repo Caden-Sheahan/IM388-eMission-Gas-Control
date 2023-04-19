@@ -188,7 +188,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 3
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -5023,7 +5023,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 3
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -5076,8 +5076,8 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.125
-      minScalar: 0.09375
+      scalar: 0.25
+      minScalar: 0.1875
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -5774,7 +5774,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 15
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -9678,7 +9678,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _target: {x: 0, y: 0, z: 0}
-  _maxDistance: 2
+  _maxDistance: 1
   _ambientSpeed: 1
   _activeSpeed: 3
   _gasCenter: {fileID: 7801460867089263598}
