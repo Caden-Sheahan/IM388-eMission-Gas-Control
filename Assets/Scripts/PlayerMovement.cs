@@ -6,7 +6,9 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     public Rigidbody rb;
-    public float moveSpeed = 5f;
+    public float moveSpeed;
+    public float vacSpeed;
+    private float _curSpeed;
     [SerializeField] private VacuumBehaviour _vacuum;
 
     Vector3 moveDirection = Vector3.zero;
@@ -50,11 +52,11 @@ public class PlayerMovement : MonoBehaviour
 
         if (value.isPressed)
         {
-            moveSpeed = 2f;
+            _curSpeed = vacSpeed;
         }
         else
         {
-            moveSpeed = 4f;
+            _curSpeed = moveSpeed;
         }
     }
 
@@ -87,7 +89,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rb.velocity = (transform.forward * moveDirection.z + transform.right * moveDirection.x) * moveSpeed + rb.velocity.y * Vector3.up;
+        rb.velocity = (transform.forward * moveDirection.z + transform.right * moveDirection.x) * _curSpeed + rb.velocity.y * Vector3.up;
     }
 
     public void OnVacuum(InputValue value)

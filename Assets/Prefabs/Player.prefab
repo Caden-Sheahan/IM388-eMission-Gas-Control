@@ -215,12 +215,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 2187918679831663997}
-  moveSpeed: 2.5
+  moveSpeed: 4
+  vacSpeed: 2
   _vacuum: {fileID: 4557453073100004159}
   groundDistance: 0
   mouseSensitivity: 25
   xRot: 0
   playerCamera: {fileID: 2187918677818385906}
+  isPaused: 0
+  pauseMenu: {fileID: 0}
+  gameStarted: 0
 --- !u!114 &2187918679831663999
 MonoBehaviour:
   m_ObjectHideFlags: 0
