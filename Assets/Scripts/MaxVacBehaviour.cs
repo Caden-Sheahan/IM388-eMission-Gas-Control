@@ -6,6 +6,9 @@ public class MaxVacBehaviour : MonoBehaviour
 {
     [SerializeField] private float _radius;
     [SerializeField] private PlayerMovement _player;
+    [SerializeField] private bool _playerInRange;
+
+    public bool PlayerInVacRange => _playerInRange;
 
     // Start is called before the first frame update
     void Start()
