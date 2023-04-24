@@ -35,18 +35,13 @@ public class UIManager : MonoBehaviour
 
     public void StartGameplay(string menuName)
     {
-        UnpauseGame(menuName);
-        GameManager.main.StartGame();
-    }
-
-    public void UnpauseGame(string menuName)
-    {
         GameObject.Find(menuName).SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         GameManager.main._isGameActive = true;
         pm.isPaused = false;
         pm.gameStarted = true;
         Time.timeScale = 1.0f;
+        GameManager.main.StartGame();
     }
 
     #endregion
