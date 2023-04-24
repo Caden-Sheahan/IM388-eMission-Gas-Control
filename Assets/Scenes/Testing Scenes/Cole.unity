@@ -9745,7 +9745,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2124799720}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: StartGameplay
+        m_MethodName: UnpauseGame
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
