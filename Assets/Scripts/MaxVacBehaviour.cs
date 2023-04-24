@@ -5,7 +5,7 @@ using UnityEngine;
 public class MaxVacBehaviour : MonoBehaviour
 {
     [SerializeField] private float _radius;
-    [SerializeField] private Transform _playerTsfm;
+    [SerializeField] private PlayerMovement _player;
 
     // Start is called before the first frame update
     void Start()
@@ -16,9 +16,9 @@ public class MaxVacBehaviour : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Vector2 distance = new(Mathf.Abs(_playerTsfm.position.x - transform.position.x), Mathf.Abs(_playerTsfm.position.z - transform.position.z));
+        Vector2 distance = new(Mathf.Abs(_player.transform.position.x - transform.position.x), Mathf.Abs(_player.transform.position.z - transform.position.z));
 
-        if (distance.magnitude <= _radius)
+        if (distance.magnitude <= _radius && Mathf.Abs(_player.transform.position.y - transform.position.y) < 3)
         {
 
         }
