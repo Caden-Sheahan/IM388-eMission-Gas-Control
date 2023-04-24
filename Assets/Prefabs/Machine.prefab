@@ -26,8 +26,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 570452659628305449}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.5, z: 0}
-  m_LocalScale: {x: 6, y: 2.5, z: 6}
+  m_LocalPosition: {x: 0, y: 1.25, z: 0}
+  m_LocalScale: {x: 6, y: 1.25, z: 6}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3192436161846016567}
@@ -238,7 +238,7 @@ MonoBehaviour:
   _rangeLength: 0
   _disableRadius: 5
   _strength: 3
-  _vacuumEffect: {fileID: 0}
+  _vacuumEffect: {fileID: 8370146801174025011}
 --- !u!199 &5922659488740901701
 ParticleSystemRenderer:
   serializedVersion: 6
