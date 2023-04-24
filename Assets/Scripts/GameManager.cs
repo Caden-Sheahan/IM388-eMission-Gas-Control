@@ -35,6 +35,8 @@ public class GameManager : MonoBehaviour
     public float LoseRatio => _loseRatio;
     public int MaxGas => _maxGas;
 
+    public float CurTime => _curTimer;
+
     private void Awake()
     {
         if (main == null)

@@ -34,7 +34,7 @@ public class VacuumBehaviour : MonoBehaviour
                     inRange = Physics.CapsuleCastAll(_cameraObj.position, _cameraObj.position + _cameraObj.forward, _rangeRadius / 2f, _cameraObj.forward, _rangeLength, _gasMask);
                     break;
                 case VacuumShape.XZRange:
-                    inRange = Physics.CapsuleCastAll(transform.position, transform.position + Vector3.up, _rangeRadius, Vector3.up, _rangeLength, _gasMask);
+                    inRange = Physics.CapsuleCastAll(transform.position, transform.position + (Vector3.up * _rangeLength), _rangeRadius, Vector3.up, 1, _gasMask);
                     break;
                 default:
                     inRange = Physics.SphereCastAll(transform.position, _rangeRadius, Vector3.up, _gasMask);
