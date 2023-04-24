@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
     public int MaxGas => _maxGas;
 
     public float CurTime => _curTimer;
+    public int Status => _status == GameStatus.Middle ? 0 : _status == GameStatus.Losing ? -1 : 1;
 
     private void Awake()
     {
