@@ -225,6 +225,12 @@ MonoBehaviour:
   isPaused: 0
   pauseMenu: {fileID: 0}
   gameStarted: 0
+  vacuumBP: {fileID: 4200712440389466315, guid: 6e1831d884ad89044a9386367c658adb, type: 3}
+  maxVacBP: {fileID: 6000639638187296518, guid: 7e49e6cc7a62c3b47b864d7ecf6bb55a, type: 3}
+  placeVacuum: 0
+  placeMaxVac: 0
+  vacuumPlaced: 0
+  maxVacPlaced: 0
 --- !u!114 &2187918679831663999
 MonoBehaviour:
   m_ObjectHideFlags: 0

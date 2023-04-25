@@ -193,7 +193,7 @@ GameObject:
   - component: {fileID: 7306825409883330738}
   m_Layer: 0
   m_Name: MaxVac
-  m_TagString: Untagged
+  m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -227,3 +227,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83357e176f9eca94ead7b4b89e2740de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _radius: 0
+  _player: {fileID: 0}
+  _playerInRange: 0
