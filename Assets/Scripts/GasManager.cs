@@ -30,8 +30,6 @@ public class GasManager : MonoBehaviour
 
     void Update()
     {
-        print("hello");
-
         if (_curCooldownTime > 0)
         {
             _curCooldownTime -= Time.deltaTime;
