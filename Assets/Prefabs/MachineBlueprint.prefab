@@ -24,6 +24,10 @@ PrefabInstance:
       value: MachineBlueprint
       objectReference: {fileID: 0}
     - target: {fileID: 3192436161846016566, guid: d85cb55d7c323ab409c65e9c9f549792, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3192436161846016566, guid: d85cb55d7c323ab409c65e9c9f549792, type: 3}
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
@@ -123,4 +127,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04977901ebd083b4aad249427183fee9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 0}

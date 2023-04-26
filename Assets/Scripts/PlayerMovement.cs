@@ -11,6 +11,9 @@ public class PlayerMovement : MonoBehaviour
     private float _curSpeed;
     [SerializeField] private VacuumBehaviour _vacuum;
 
+    public float overchargeSpeed;
+    public float overchargeVacSpeed;
+
     Vector3 moveDirection = Vector3.zero;
 
     public float groundDistance;
@@ -23,17 +26,25 @@ public class PlayerMovement : MonoBehaviour
     public GameObject pauseMenu;
     public bool gameStarted = false;
 
-    public GameObject vacuumBP;
-    public GameObject maxVacBP;
+    //public GameObject vacuumBP;
+    //public GameObject maxVacBP;
+    public GameObject bP;
     public GameObject vacuum;
     public GameObject maxVac;
     public bool placeVacuum = false;
     public bool placeMaxVac = false;
     public bool vacuumPlaced = false;
     public bool maxVacPlaced = false;
+    public float vacuumCooldown;
+    public float curVacuumCooldown;
+    public float maxVacCooldown;
+    public float maxVacRuntime;
+    public float curMaxVacCooldown;
     VacuumPlacement vp;
     MaxVacPlacement mp;
-    public Transform camera;
+
+    public bool overcharged;
+    [SerializeField] private bool _isSucking;
 
     private void Start()
     {
@@ -51,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
     public void OnJump(InputValue value)
     {
 
-        if (IsGrounded() == true)
+        if (IsGrounded())
         {
             GetComponent<Rigidbody>().AddForce(transform.up * 5, ForceMode.Impulse);
         }
@@ -59,32 +70,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnFire(InputValue value)
     {
-        _vacuum.SetActive(value.isPressed && placeVacuum == false && placeMaxVac == false);
-
-        if (value.isPressed && placeVacuum == false && placeMaxVac == false)
-        {
-            _curSpeed = vacSpeed;
-        }
-        else
-        {
-            _curSpeed = moveSpeed;
-        }
-
-        if (value.isPressed && placeVacuum == true && placeMaxVac == false && vacuumPlaced == false)
-        {
-            Instantiate(vacuum, vacuumBP.transform.position, vacuumBP.transform.rotation);
-            vacuumBP.SetActive(false);
-            placeVacuum = false;
-            vacuumPlaced = true;
-        }
-
-        else if (value.isPressed && placeVacuum == false && placeMaxVac == true && maxVacPlaced == false)
-        {
-            Instantiate(maxVac, maxVacBP.transform.position, maxVacBP.transform.rotation);
-            maxVacBP.SetActive(false);
-            placeMaxVac = false;
-            maxVacPlaced = true;
-        }
+        _isSucking = value.isPressed;
 
         //if (value.isPressed && placeVacuum == true && placeMaxVac == false)
         //{
@@ -121,7 +107,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool IsGrounded()
     {
-        bool IsGrounded = Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 1.1f);
+        bool IsGrounded = Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 0.66f);
         return IsGrounded;
     }
 
@@ -129,56 +115,82 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         rb.velocity = (transform.forward * moveDirection.z + transform.right * moveDirection.x) * _curSpeed + rb.velocity.y * Vector3.up;
+
+        _vacuum.SetActive(_isSucking && !placeVacuum && !placeMaxVac);
+
+        if (_isSucking || placeVacuum || placeMaxVac)
+        {
+            _curSpeed = overcharged ? overchargeVacSpeed : vacSpeed;
+        }
+        else
+        {
+            _curSpeed = overcharged ? overchargeSpeed : moveSpeed;
+        }
+
+        if (curVacuumCooldown > 0)
+        {
+            curVacuumCooldown -= Time.deltaTime;
+        }
+        if (curMaxVacCooldown > 0)
+        {
+            curMaxVacCooldown -= Time.deltaTime;
+        }
+
+        if (curMaxVacCooldown <= 0 && maxVacPlaced)
+        {
+            maxVac.transform.position = 100 * Vector3.up;
+            maxVacPlaced = false;
+            curMaxVacCooldown = maxVacCooldown;
+        }
     }
 
     public void OnVacuum(InputValue value)
     {
-        if (placeVacuum == false && placeMaxVac == false && vacuumPlaced == false)
+        if (vacuumPlaced || curVacuumCooldown > 0)
         {
-            placeVacuum = true;
-            vacuumBP.SetActive(true);
+            return;
         }
 
-        else if (placeVacuum == true && placeMaxVac == false && vacuumPlaced == false)
-        {
-            placeVacuum = false;
-            vacuumBP.SetActive(false);
-        }
+        placeVacuum = !placeVacuum;
+        bP.SetActive(placeVacuum);
 
-        else if (vacuumPlaced == true)
+        if (placeMaxVac && placeVacuum)
         {
-            Debug.Log("Already Placed Vacuum");
+            placeMaxVac = false;
         }
     }
 
     public void OnMaxVac(InputValue value)
     {
-        if (placeVacuum == false && placeMaxVac == false && maxVacPlaced == false)
+        if (maxVacPlaced || curMaxVacCooldown > 0)
         {
-            placeMaxVac = true;
-            maxVacBP.SetActive(true);
+            return;
         }
 
-        else if (placeVacuum == false && placeMaxVac == true && maxVacPlaced == false)
-        {
-            placeMaxVac = false;
-            maxVacBP.SetActive(false);
-        }
+        placeMaxVac = !placeMaxVac;
+        bP.SetActive(placeMaxVac);
 
-        else if (maxVacPlaced == true)
+        if (placeMaxVac && placeVacuum)
         {
-            Debug.Log("Already Placed MaxVac");
+            placeVacuum = false;
         }
     }
 
     public void OnPickUp(InputValue value)
     {
-        //Not Working, not sure why. If you get rid of the && and just leave the raycast it will allow you to delete anything you look at
-        Debug.Log("Why");
-        if (Physics.Raycast(camera.position, camera.forward, out RaycastHit hit, 3f) && hit.transform.tag == "Pickup")
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, 3f) && hit.transform.CompareTag("Pickup"))
         {
-            Debug.Log("Not");
-            Destroy(hit.transform.gameObject);
+            if (hit.transform.parent.GetComponent<VacuumBehaviour>())
+            {
+                vacuumPlaced = false;
+                curVacuumCooldown = vacuumCooldown;
+            }
+            else if (hit.transform.parent.GetComponent<MaxVacBehaviour>())
+            {
+                maxVacPlaced = false;
+                curMaxVacCooldown = maxVacCooldown;
+            }
+            hit.transform.parent.position = 100 * Vector3.up;
         }
     }
 
@@ -206,22 +218,26 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    //public void OnPlace(InputValue value)
-    //{
-    //    if (value.isPressed && placeVacuum == true && placeMaxVac == false && vacuumPlaced == false)
-    //    {
-    //        Instantiate(vacuum, vacuumBP.transform.position, vacuumBP.transform.rotation);
-    //        vacuumBP.SetActive(false);
-    //        placeVacuum = false;
-    //        vacuumPlaced = true;
-    //    }
+    public void OnPlace(InputValue value)
+    {
+        if (value.isPressed)
+        {
+            if (placeVacuum && !placeMaxVac && !vacuumPlaced)
+            {
+                vacuum.transform.position = bP.transform.position;
+                bP.SetActive(false);
+                placeVacuum = false;
+                vacuumPlaced = true;
+            }
 
-    //    else if (value.isPressed && placeVacuum == false && placeMaxVac == true && maxVacPlaced == false)
-    //    {
-    //        Instantiate(maxVac, maxVacBP.transform.position, maxVacBP.transform.rotation);
-    //        maxVacBP.SetActive(false);
-    //        placeMaxVac = false;
-    //        maxVacPlaced = true;
-    //    }
-    //}
+            else if (!placeVacuum && placeMaxVac && !maxVacPlaced)
+            {
+                maxVac.transform.position = bP.transform.position;
+                bP.SetActive(false);
+                placeMaxVac = false;
+                maxVacPlaced = true;
+                curMaxVacCooldown = maxVacRuntime;
+            }
+        }
+    }
 }

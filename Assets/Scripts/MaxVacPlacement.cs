@@ -5,25 +5,17 @@ using UnityEngine.InputSystem;
 
 public class MaxVacPlacement : MonoBehaviour
 {
-    public Transform camera;
     //public Camera main;
     //PlayerMovement pm;
 
     //public GameObject maxVac;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        if (Physics.Raycast(camera.position, camera.forward, out RaycastHit hit, 3f) && hit.transform.tag == "Floor")
-        {
-            transform.position = hit.point;
-        }
-    }
+    public LayerMask floorMask;
 
     // Update is called once per frame
     void Update()
     {
-        if (Physics.Raycast(camera.position, camera.forward, out RaycastHit hit, 3f) && hit.transform.tag == "Floor")
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, 100f, floorMask))
         {
             transform.position = hit.point;
         }

@@ -5,7 +5,6 @@ using UnityEngine.InputSystem;
 
 public class VacuumPlacement : MonoBehaviour
 {
-    public Transform camera;
     //PlayerMovement pm;
 
     //public GameObject vacuum;
@@ -13,7 +12,7 @@ public class VacuumPlacement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (Physics.Raycast(camera.position, camera.forward, out RaycastHit hit, 3f) && hit.transform.tag == "Floor")
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, 100f) && hit.transform.tag == "Floor")
         {
             transform.position = hit.point;
         }
@@ -22,7 +21,7 @@ public class VacuumPlacement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Physics.Raycast(camera.position, camera.forward, out RaycastHit hit, 3f) && hit.transform.tag == "Floor")
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, 100f) && hit.transform.tag == "Floor")
         {
             transform.position = hit.point;
         }

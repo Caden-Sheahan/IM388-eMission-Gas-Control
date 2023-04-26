@@ -16,7 +16,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &6400910821913580808
 Transform:
@@ -97,10 +97,10 @@ GameObject:
   - component: {fileID: 3192436160365666810}
   m_Layer: 0
   m_Name: MachineMesh
-  m_TagString: Untagged
+  m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &3192436160365666809
 Transform:
@@ -194,7 +194,7 @@ GameObject:
   - component: {fileID: 7481719154156369160}
   m_Layer: 0
   m_Name: Machine
-  m_TagString: Pickup
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

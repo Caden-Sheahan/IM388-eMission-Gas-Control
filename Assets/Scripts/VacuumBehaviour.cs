@@ -19,7 +19,17 @@ public class VacuumBehaviour : MonoBehaviour
     [SerializeField] private float _disableRadius;
     [SerializeField] private float _strength;
 
+    [SerializeField] private float _overchargeLength;
+    [SerializeField] private float _overchargeStrength;
+
     [SerializeField] private Renderer _vacuumEffect;
+
+    private PlayerMovement _plr;
+
+    private void Start()
+    {
+        _plr = FindObjectOfType<PlayerMovement>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -31,7 +41,7 @@ public class VacuumBehaviour : MonoBehaviour
             switch (_shape)
             {
                 case VacuumShape.Capsule:
-                    inRange = Physics.CapsuleCastAll(_cameraObj.position, _cameraObj.position + _cameraObj.forward, _rangeRadius / 2f, _cameraObj.forward, _rangeLength, _gasMask);
+                    inRange = Physics.CapsuleCastAll(_cameraObj.position, _cameraObj.position + _cameraObj.forward, _rangeRadius / 2f, _cameraObj.forward, _plr.overcharged ? _overchargeLength : _rangeLength, _gasMask);
                     break;
                 case VacuumShape.XZRange:
                     inRange = Physics.CapsuleCastAll(transform.position, transform.position + (Vector3.up * _rangeLength), _rangeRadius, Vector3.up, 1, _gasMask);
@@ -50,7 +60,7 @@ public class VacuumBehaviour : MonoBehaviour
 
             foreach (RaycastHit curGas in inRange)
             {
-                curGas.transform.GetComponent<GasBehaviour>().MovingToVacuum(true, _strength, transform);
+                curGas.transform.GetComponent<GasBehaviour>().MovingToVacuum(true, _plr.overcharged ? _overchargeStrength : _strength, transform);
             }
         }
     }
