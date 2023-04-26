@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Testing Scenes/OldHouse.unity
     guid: 8f3d8c0e948fa9d4285a28a9fb74dda8
+  - enabled: 1
+    path: Assets/Scenes/House.unity
+    guid: 6fb0ab84e37ba7a42b27e456c913a7b2
   m_configObjects: {}

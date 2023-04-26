@@ -9,16 +9,19 @@ public class GasBehaviour : MonoBehaviour
     [SerializeField] private float _maxDistance;
     [SerializeField] private float _ambientSpeed;
     [SerializeField] private float _activeSpeed;
-    private bool _movingToVacuum;
+    [SerializeField] private bool _movingToVacuum;
     private GasSpawner _associatedSpawner;
 
     private ParticleSystem _particles;
     [SerializeField] ParticleSystem _gasCenter;
     [SerializeField] Renderer _sphere;
 
+    private bool _imFlyinIn;
+
     private void Awake()
     {
         _particles = GetComponent<ParticleSystem>();
+        _imFlyinIn = false;
     }
 
     public void Init(GasSpawner spawner)
@@ -37,7 +40,7 @@ public class GasBehaviour : MonoBehaviour
 
     void Update()
     {
-        if (Vector3.Distance(transform.position, _target) < 0.1f)
+        if (Vector3.Distance(transform.position, _target) < 0.01f)
         {
             if (_movingToVacuum)
             {
@@ -65,10 +68,12 @@ public class GasBehaviour : MonoBehaviour
             {
                 return;
             }
+            _imFlyinIn = true;
             _target = vacuum.position;
         }
-        if (!isMoving)
+        if (!isMoving && _imFlyinIn)
         {
+            _imFlyinIn = false;
             _center = transform.position;
             _target = _center;
         }

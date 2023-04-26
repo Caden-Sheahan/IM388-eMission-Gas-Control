@@ -238,6 +238,8 @@ MonoBehaviour:
   _rangeLength: 0
   _disableRadius: 5
   _strength: 3
+  _overchargeLength: 0
+  _overchargeStrength: 0
   _vacuumEffect: {fileID: 8370146801174025011}
 --- !u!199 &5922659488740901701
 ParticleSystemRenderer:

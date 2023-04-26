@@ -27,6 +27,11 @@ public class MenuManager : MonoBehaviour
         SceneManager.LoadScene(sceneNum);
     }
 
+    public void LoadScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
+
     /// <summary>
     /// View the Main Menu
     /// </summary>

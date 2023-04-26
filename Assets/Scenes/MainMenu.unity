@@ -17850,7 +17850,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1287762855
 RectTransform:
   m_ObjectHideFlags: 0
@@ -18607,13 +18607,13 @@ MonoBehaviour:
       - m_Target: {fileID: 680341714}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
         m_MethodName: LoadScene
-        m_Mode: 3
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 1
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: House
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1471355645
@@ -19878,7 +19878,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2037519466
 RectTransform:
   m_ObjectHideFlags: 0
@@ -20025,15 +20025,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Use WASD to move, and use your mouse to look around
+  m_text: 'Use WASD to move, Space to jump, and
 
-    Hold Left Click
-    to use your vacuum
+    use your mouse to look around
 
-    Press Q or E to spawn a machine, and Left Click to place
+    Hold
+    Left Click to use your vacuum
+
+    Press Q or E to select a machine, F to place
     it
 
-    Press Spacebar to Jump
+    Right click a machine to remove it
 
     Press ESC to Pause'
   m_isRightToLeft: 0

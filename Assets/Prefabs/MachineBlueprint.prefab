@@ -27,10 +27,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3192436161846016566, guid: d85cb55d7c323ab409c65e9c9f549792, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
     - target: {fileID: 3192436161846016567, guid: d85cb55d7c323ab409c65e9c9f549792, type: 3}
       propertyPath: m_RootOrder
       value: 0

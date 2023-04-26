@@ -34,6 +34,16 @@ public class VacuumBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (_shape == VacuumShape.Capsule)
+        {
+            RaycastHit[] inLargeRange = Physics.CapsuleCastAll(transform.position, transform.position + Vector3.up, _disableRadius, Vector3.up, 100, _gasMask);
+
+            foreach (RaycastHit curGas in inLargeRange)
+            {
+                curGas.transform.GetComponent<GasBehaviour>().MovingToVacuum(false, -1, transform);
+            }
+        }
+
         if (_activated)
         {
             RaycastHit[] inRange;
@@ -49,13 +59,6 @@ public class VacuumBehaviour : MonoBehaviour
                 default:
                     inRange = Physics.SphereCastAll(transform.position, _rangeRadius, Vector3.up, _gasMask);
                     break;
-            }
-
-            RaycastHit[] inLargeRange = Physics.CapsuleCastAll(transform.position, transform.position + Vector3.up, _disableRadius, Vector3.up, 100, _gasMask);
-
-            foreach (RaycastHit curGas in inLargeRange)
-            {
-                curGas.transform.GetComponent<GasBehaviour>().MovingToVacuum(false);
             }
 
             foreach (RaycastHit curGas in inRange)

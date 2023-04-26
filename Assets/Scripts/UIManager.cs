@@ -14,7 +14,21 @@ public class UIManager : MonoBehaviour
     public GameObject endTimer;
     public TMP_Text endTimerText;
 
+    [Header("Machines")]
+    private PlayerMovement _plr;
+    public TMP_Text vacuumTimer;
+    public TMP_Text maxVacTimer;
+    public Image vacuumImage;
+    public Image maxVacImage;
+    public Image selectVacuum;
+    public Image selectMaxVac;
+
     public PlayerMovement pm;
+
+    private void Start()
+    {
+        _plr = FindObjectOfType<PlayerMovement>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -55,6 +69,13 @@ public class UIManager : MonoBehaviour
         {
             endTimer.SetActive(false);
         }
+
+        vacuumTimer.text = _plr.curVacuumCooldown <= 0 ? "" : Mathf.Ceil(_plr.curVacuumCooldown) + "";
+        vacuumImage.color = (_plr.curVacuumCooldown <= 0 && !_plr.vacuumPlaced) || _plr.vacuumPlaced ? Color.red : Color.gray;
+        maxVacTimer.text = _plr.curMaxVacCooldown <= 0 ? "" : Mathf.Ceil(_plr.curMaxVacCooldown) + "";
+        maxVacImage.color = (_plr.curMaxVacCooldown <= 0 && !_plr.maxVacPlaced) || (_plr.curMaxVacCooldown > 0 && _plr.maxVacPlaced) ? Color.yellow : Color.gray;
+        selectVacuum.color = _plr.placeVacuum ? Color.white : Color.clear;
+        selectMaxVac.color = _plr.placeMaxVac ? Color.white : Color.clear;
     }
 
     #region Button Functions
@@ -67,6 +88,11 @@ public class UIManager : MonoBehaviour
     public void LoadScene(int sceneNum)
     {
         SceneManager.LoadScene(sceneNum);
+    }
+
+    public void LoadScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
     }
 
     public void StartGameplay(string menuName)

@@ -31,6 +31,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject GameOverUI;
     [SerializeField] private TMP_Text _gameOverMessage;
 
+    private float _gameTime;
+
+    public string GameTime => Mathf.FloorToInt(_gameTime / 60) + ((_gameTime - Mathf.FloorToInt(_gameTime / 60) < 10) ? ":0" : ":") + Mathf.FloorToInt(_gameTime - Mathf.FloorToInt(_gameTime / 60));
     public float WinRatio => _winRatio;
     public float LoseRatio => _loseRatio;
     public int MaxGas => _maxGas;
@@ -66,6 +69,11 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Time.timeScale != 0)
+        {
+            _gameTime += Time.deltaTime;
+        }
+
         if (GasManager.main.GasRatio < _winRatio)
         {
             if (_status != GameStatus.Winning)
@@ -98,7 +106,7 @@ public class GameManager : MonoBehaviour
                 if (_status == GameStatus.Winning)
                 {
                     print("You win!");
-                    _gameOverMessage.text = "You Win!";
+                    _gameOverMessage.text = "You Win!\nYour time is " + GameTime;
                 }
                 else
                 {

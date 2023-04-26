@@ -222,7 +222,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (value.isPressed)
         {
-            if (placeVacuum && !placeMaxVac && !vacuumPlaced)
+            if (placeVacuum && !placeMaxVac&& !vacuumPlaced)
             {
                 vacuum.transform.position = bP.transform.position;
                 bP.SetActive(false);
