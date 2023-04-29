@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameStatus _status;
     [SerializeField] private float _winTime;
     [SerializeField] private float _loseTime;
+    [SerializeField] private GameStatus _lastStatus;
+    [SerializeField] private float _bufferTime;
     private float _curTimer;
     public bool _isGameActive = false;
 
@@ -79,16 +81,30 @@ public class GameManager : MonoBehaviour
         {
             if (_status != GameStatus.Winning)
             {
+                if (_lastStatus == GameStatus.Winning)
+                {
+                    _curTimer += _bufferTime;
+                }
+                else
+                {
+                    _curTimer = _winTime;
+                }
                 _status = GameStatus.Winning;
-                _curTimer = _winTime;
             }
         }
         else if (GasManager.main.GasRatio > 1 - _loseRatio)
         {
             if (_status != GameStatus.Losing)
             {
+                if (_lastStatus == GameStatus.Losing)
+                {
+                    _curTimer += _bufferTime;
+                }
+                else
+                {
+                    _curTimer = _loseRatio;
+                }
                 _status = GameStatus.Losing;
-                _curTimer = _loseTime;
             }
         }
         else
