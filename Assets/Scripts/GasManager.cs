@@ -10,6 +10,8 @@ public class GasManager : MonoBehaviour
     [SerializeField] private Transform _gasParent;
     [SerializeField] private GasBehaviour _gasObj;
 
+    public GasBehaviour[] AllGas => _gasParent.GetComponentsInChildren<GasBehaviour>();
+
     [Header("Timing")]
     private float _curCooldownTime;
 

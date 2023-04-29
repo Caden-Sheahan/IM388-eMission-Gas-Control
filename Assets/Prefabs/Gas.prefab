@@ -113,7 +113,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2489604528577921902}
   serializedVersion: 8
-  lengthInSec: 5
+  lengthInSec: 1
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -4948,7 +4948,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7870215972651281482}
   serializedVersion: 8
-  lengthInSec: 5
+  lengthInSec: 1
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -9681,6 +9681,8 @@ MonoBehaviour:
   _maxDistance: 1
   _ambientSpeed: 1
   _activeSpeed: 3
+  _movingToVacuum: 0
+  _vacuumTarget: {fileID: 0}
   _gasCenter: {fileID: 7801460867089263598}
   _sphere: {fileID: 7778019732488261782}
 --- !u!54 &4023836336675956313
