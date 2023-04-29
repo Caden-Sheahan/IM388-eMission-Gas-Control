@@ -90,6 +90,7 @@ public class GameManager : MonoBehaviour
                     _curTimer = _winTime;
                 }
                 _status = GameStatus.Winning;
+                _lastStatus = GameStatus.Winning;
             }
         }
         else if (GasManager.main.GasRatio > 1 - _loseRatio)
@@ -105,6 +106,7 @@ public class GameManager : MonoBehaviour
                     _curTimer = _loseRatio;
                 }
                 _status = GameStatus.Losing;
+                _lastStatus = GameStatus.Losing;
             }
         }
         else
