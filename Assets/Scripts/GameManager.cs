@@ -33,7 +33,8 @@ public class GameManager : MonoBehaviour
 
     private float _gameTime;
 
-    public string GameTime => Mathf.FloorToInt(_gameTime / 60) + ((_gameTime - Mathf.FloorToInt(_gameTime / 60) < 10) ? ":0" : ":") + Mathf.FloorToInt(_gameTime - Mathf.FloorToInt(_gameTime / 60));
+    public string GameTime => Mathf.FloorToInt(_gameTime / 60) + ":" + string.Format("{0:00}", Mathf.FloorToInt(_gameTime % 60)); 
+    /*Mathf.FloorToInt(_gameTime / 60) + ((_gameTime - Mathf.FloorToInt(_gameTime / 60) < 10) ? ":0" : ":") + Mathf.FloorToInt(_gameTime - Mathf.FloorToInt(_gameTime / 60));*/
     public float WinRatio => _winRatio;
     public float LoseRatio => _loseRatio;
     public int MaxGas => _maxGas;
@@ -100,6 +101,7 @@ public class GameManager : MonoBehaviour
             _curTimer -= Time.deltaTime;
             if (_curTimer <= 0)
             {
+                _isGameActive = false;
                 ActivateUI(GameOverUI);
                 Time.timeScale = 0;
                 // disable controls for the player here so only UI is interactive
@@ -120,6 +122,10 @@ public class GameManager : MonoBehaviour
         {
             HUD.SetActive(true);
         }
+        else
+        {
+            HUD.SetActive(false);
+        }
     }
 
     public float GetCooldownTime()
@@ -136,5 +142,9 @@ public class GameManager : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.None;
         UI.SetActive(true);
+        if (UI.name == "GameOverUI")
+        {
+            _isGameActive = false;
+        }
     }
 }
