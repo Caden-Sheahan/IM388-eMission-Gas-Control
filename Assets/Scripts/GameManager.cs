@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float _loseTime;
     [SerializeField] private GameStatus _lastStatus;
     [SerializeField] private float _bufferTime;
-    private float _curTimer;
+    [SerializeField] private float _curTimer;
     public bool _isGameActive = false;
 
     [Header("Gas Management")]
