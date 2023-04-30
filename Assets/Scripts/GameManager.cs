@@ -77,6 +77,11 @@ public class GameManager : MonoBehaviour
             _gameTime += Time.deltaTime;
         }
 
+        if (_curTimer >= 10)
+        {
+            _curTimer = 10;
+        }
+
         if (GasManager.main.GasRatio < _winRatio)
         {
             if (_status != GameStatus.Winning)
@@ -103,7 +108,7 @@ public class GameManager : MonoBehaviour
                 }
                 else
                 {
-                    _curTimer = _loseRatio;
+                    _curTimer = _loseTime;
                 }
                 _status = GameStatus.Losing;
                 _lastStatus = GameStatus.Losing;
@@ -153,7 +158,7 @@ public class GameManager : MonoBehaviour
 
     private void ResetTimer()
     {
-        _curTimer = float.MaxValue;
+        _curTimer = 10;
     }
 
     private void ActivateUI(GameObject UI)
