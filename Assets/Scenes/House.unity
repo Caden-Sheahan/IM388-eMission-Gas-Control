@@ -13029,7 +13029,7 @@ MonoBehaviour:
   _winTime: 10
   _loseTime: 10
   _lastStatus: 0
-  _bufferTime: 0
+  _bufferTime: 2
   _curTimer: 0
   _isGameActive: 0
   _difficulty: 0.254
