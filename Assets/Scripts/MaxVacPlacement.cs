@@ -15,7 +15,7 @@ public class MaxVacPlacement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, 100f, floorMask))
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, 5f, floorMask))
         {
             transform.position = hit.point;
         }

@@ -70,19 +70,31 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnFire(InputValue value)
     {
-        _isSucking = value.isPressed;
+        if (!placeMaxVac && !placeVacuum)
+        {
+            _isSucking = value.isPressed;
+            return;
+        }
 
-        //if (value.isPressed && placeVacuum == true && placeMaxVac == false)
-        //{
-        //    Instantiate(vacuumBP, vacuumBP.transform.position, vacuumBP.transform.rotation);
-        //    Destroy(vacuumBP);
-        //}
+        if (value.isPressed)
+        {
+            if (placeVacuum && !placeMaxVac && !vacuumPlaced)
+            {
+                vacuum.transform.position = bP.transform.position;
+                bP.SetActive(false);
+                placeVacuum = false;
+                vacuumPlaced = true;
+            }
 
-        //if (value.isPressed && placeVacuum == false && placeMaxVac == true)
-        //{
-        //    Instantiate(maxVacBP, maxVacBP.transform.position, maxVacBP.transform.rotation);
-        //    Destroy(maxVacBP);
-        //}
+            else if (!placeVacuum && placeMaxVac && !maxVacPlaced)
+            {
+                maxVac.transform.position = bP.transform.position;
+                bP.SetActive(false);
+                placeMaxVac = false;
+                maxVacPlaced = true;
+                curMaxVacCooldown = maxVacRuntime;
+            }
+        }
     }
 
     public void OnLook(InputValue value)
@@ -222,7 +234,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (value.isPressed)
         {
-            if (placeVacuum && !placeMaxVac&& !vacuumPlaced)
+            if (placeVacuum && !placeMaxVac && !vacuumPlaced)
             {
                 vacuum.transform.position = bP.transform.position;
                 bP.SetActive(false);
