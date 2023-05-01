@@ -73,6 +73,11 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnFire(InputValue value)
     {
+        if (Time.timeScale == 0)
+        {
+            return;
+        }
+
         if (!placeMaxVac && !placeVacuum)
         {
             _isSucking = value.isPressed;
