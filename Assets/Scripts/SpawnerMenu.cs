@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEditor;
-
+/*
 [CustomEditor(typeof(GasSpawner))]
 public class ObjectBuilderEditor : Editor
 {
@@ -16,3 +16,4 @@ public class ObjectBuilderEditor : Editor
         }
     }
 }
+*/

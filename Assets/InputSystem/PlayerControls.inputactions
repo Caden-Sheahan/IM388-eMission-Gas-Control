@@ -45,7 +45,7 @@
                     "name": "Fire",
                     "type": "Value",
                     "id": "21ed2e6d-30f7-4e6b-8bee-2ed4ac6696bf",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -61,18 +61,18 @@
                 },
                 {
                     "name": "Vacuum",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "aa4a6165-50d1-4355-b372-9fde055d99ff",
-                    "expectedControlType": "",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
                 },
                 {
                     "name": "MaxVac",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "95eb88de-eab0-4539-84c1-cbbe4fd25010",
-                    "expectedControlType": "",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -85,6 +85,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Place",
+                    "type": "Button",
+                    "id": "a2572dda-fff0-45ca-8b6f-4d4e15e7100c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "PickUp",
+                    "type": "Button",
+                    "id": "966cc363-c080-4201-bb34-ee46c63a6199",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -371,6 +389,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "MaxVac",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a977edf6-2205-47b4-9220-dec36cf8c163",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Place",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f11be3d5-82f4-434c-88b7-2773a788cdb1",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PickUp",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

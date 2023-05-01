@@ -7,15 +7,19 @@ public class GasSpawner : MonoBehaviour
     [SerializeField] private bool _activated;
     [SerializeField] private Boundary _boundary;
 
+    private int _gasCount;
+
     public bool Activated => _activated;
 
     public void SpawnGas(GasBehaviour gasObj, Transform parent)
     {
         Vector3 spawnPoint = _boundary.RandomPoint();
         GasBehaviour curGas = Instantiate(gasObj, spawnPoint, Quaternion.identity);
-        curGas.Init();
+        curGas.Init(this);
 
         curGas.transform.SetParent(parent);
+
+        _gasCount++;
     }
 
     private void OnDrawGizmos()
@@ -39,6 +43,22 @@ public class GasSpawner : MonoBehaviour
         Vector3 size = _boundary.GetSize();
 
         return size.x * size.y * size.z;
+    }
+
+    public void RemoveGas()
+    {
+        _gasCount--;
+        if (_gasCount <= 0)
+        {
+            StartCoroutine(Disable());
+        }
+    }
+
+    private IEnumerator Disable()
+    {
+        _activated = false;
+        yield return new WaitForSeconds(10);
+        _activated = true;
     }
 }
 

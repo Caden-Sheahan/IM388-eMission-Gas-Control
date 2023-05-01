@@ -14,7 +14,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameStatus _status;
     [SerializeField] private float _winTime;
     [SerializeField] private float _loseTime;
-    private float _curTimer;
+    [SerializeField] private GameStatus _lastStatus;
+    [SerializeField] private float _bufferTime;
+    [SerializeField] private float _curTimer;
     public bool _isGameActive = false;
 
     [Header("Gas Management")]
@@ -30,10 +32,18 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Slider _difficultySlider;
     [SerializeField] private GameObject GameOverUI;
     [SerializeField] private TMP_Text _gameOverMessage;
+    [SerializeField] private TMP_Text _winTimeDisplay;
 
+    private float _gameTime;
+
+    public string GameTime => Mathf.FloorToInt(_gameTime / 60) + ":" + string.Format("{0:00}", Mathf.FloorToInt(_gameTime % 60)); 
+    /*Mathf.FloorToInt(_gameTime / 60) + ((_gameTime - Mathf.FloorToInt(_gameTime / 60) < 10) ? ":0" : ":") + Mathf.FloorToInt(_gameTime - Mathf.FloorToInt(_gameTime / 60));*/
     public float WinRatio => _winRatio;
     public float LoseRatio => _loseRatio;
     public int MaxGas => _maxGas;
+
+    public float CurTime => _curTimer;
+    public int Status => _status == GameStatus.Middle ? 0 : _status == GameStatus.Losing ? -1 : 1;
 
     private void Awake()
     {
@@ -50,30 +60,59 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GasManager.main.InitialGas(Mathf.RoundToInt(_startingRatio * _maxGas));
-        ResetTimer();
-
         _difficultySlider.onValueChanged.AddListener((v) => { _difficulty = v/4; });
         print(_difficulty);
+    }
+
+    public void StartGame()
+    {
+        GasManager.main.InitialGas(Mathf.RoundToInt(_startingRatio * _maxGas));
+        ResetTimer();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (GasManager.main.GasRatio <= _winRatio)
+        if (Time.timeScale != 0)
+        {
+            _gameTime += Time.deltaTime;
+        }
+
+        if (_curTimer >= 10)
+        {
+            _curTimer = 10;
+        }
+
+        if (GasManager.main.GasRatio < _winRatio)
         {
             if (_status != GameStatus.Winning)
             {
+                if (_lastStatus == GameStatus.Winning)
+                {
+                    _curTimer += _bufferTime;
+                }
+                else
+                {
+                    _curTimer = _winTime;
+                }
                 _status = GameStatus.Winning;
-                _curTimer = _winTime;
+                _lastStatus = GameStatus.Winning;
             }
         }
-        else if (GasManager.main.GasRatio >= 1 - _loseRatio)
+        else if (GasManager.main.GasRatio > 1 - _loseRatio)
         {
             if (_status != GameStatus.Losing)
             {
+                if (_lastStatus == GameStatus.Losing)
+                {
+                    _curTimer += _bufferTime;
+                }
+                else
+                {
+                    _curTimer = _loseTime;
+                }
                 _status = GameStatus.Losing;
-                _curTimer = _loseTime;
+                _lastStatus = GameStatus.Losing;
             }
         }
         else
@@ -86,12 +125,15 @@ public class GameManager : MonoBehaviour
             _curTimer -= Time.deltaTime;
             if (_curTimer <= 0)
             {
+                _isGameActive = false;
                 ActivateUI(GameOverUI);
+                Time.timeScale = 0;
                 // disable controls for the player here so only UI is interactive
                 if (_status == GameStatus.Winning)
                 {
                     print("You win!");
                     _gameOverMessage.text = "You Win!";
+                    _winTimeDisplay.text = "Your time is " + GameTime;
                 }
                 else
                 {
@@ -105,6 +147,10 @@ public class GameManager : MonoBehaviour
         {
             HUD.SetActive(true);
         }
+        else
+        {
+            HUD.SetActive(false);
+        }
     }
 
     public float GetCooldownTime()
@@ -114,13 +160,16 @@ public class GameManager : MonoBehaviour
 
     private void ResetTimer()
     {
-        _curTimer = float.MaxValue;
+        _curTimer = 10;
     }
 
     private void ActivateUI(GameObject UI)
     {
         Cursor.lockState = CursorLockMode.None;
         UI.SetActive(true);
+        if (UI.name == "GameOverUI")
+        {
+            _isGameActive = false;
+        }
     }
-
 }
