@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Slider _difficultySlider;
     [SerializeField] private GameObject GameOverUI;
     [SerializeField] private TMP_Text _gameOverMessage;
+    [SerializeField] private TMP_Text _winTimeDisplay;
 
     private float _gameTime;
 
@@ -131,7 +132,8 @@ public class GameManager : MonoBehaviour
                 if (_status == GameStatus.Winning)
                 {
                     print("You win!");
-                    _gameOverMessage.text = "You Win!\nYour time is " + GameTime;
+                    _gameOverMessage.text = "You Win!";
+                    _winTimeDisplay.text = "Your time is " + GameTime;
                 }
                 else
                 {

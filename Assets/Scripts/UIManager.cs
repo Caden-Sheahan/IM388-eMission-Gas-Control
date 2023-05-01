@@ -16,12 +16,16 @@ public class UIManager : MonoBehaviour
 
     [Header("Machines")]
     private PlayerMovement _plr;
+    public GameObject vacuumInput;
+    public GameObject maxVacInput;
     public TMP_Text vacuumTimer;
     public TMP_Text maxVacTimer;
     public Image vacuumImage;
     public Image maxVacImage;
     public Image selectVacuum;
     public Image selectMaxVac;
+    public Color vacuumColor;
+    public Color maxVacColor;
 
     public PlayerMovement pm;
 
@@ -70,12 +74,37 @@ public class UIManager : MonoBehaviour
             endTimer.SetActive(false);
         }
 
-        vacuumTimer.text = _plr.curVacuumCooldown <= 0 ? "" : Mathf.Ceil(_plr.curVacuumCooldown) + "";
-        vacuumImage.color = (_plr.curVacuumCooldown <= 0 && !_plr.vacuumPlaced) || _plr.vacuumPlaced ? Color.red : Color.gray;
-        maxVacTimer.text = _plr.curMaxVacCooldown <= 0 ? "" : Mathf.Ceil(_plr.curMaxVacCooldown) + "";
-        maxVacImage.color = (_plr.curMaxVacCooldown <= 0 && !_plr.maxVacPlaced) || (_plr.curMaxVacCooldown > 0 && _plr.maxVacPlaced) ? Color.yellow : Color.gray;
+        vacuumTimer.text = _plr.curVacuumCooldown <= 0 ? "Q" : Mathf.Ceil(_plr.curVacuumCooldown) + "";
+        vacuumImage.color = (_plr.curVacuumCooldown <= 0 && !_plr.vacuumPlaced) || _plr.vacuumPlaced ? vacuumImage.color : Color.gray;
+        maxVacTimer.text = _plr.curMaxVacCooldown <= 0 ? "E" : Mathf.Ceil(_plr.curMaxVacCooldown) + "";
+        maxVacImage.color = (_plr.curMaxVacCooldown <= 0 && !_plr.maxVacPlaced) || (_plr.curMaxVacCooldown > 0 && _plr.maxVacPlaced) ? maxVacImage.color : Color.gray;
         selectVacuum.color = _plr.placeVacuum ? Color.white : Color.clear;
         selectMaxVac.color = _plr.placeMaxVac ? Color.white : Color.clear;
+        if (_plr.curVacuumCooldown <= 0)
+        {
+            vacuumImage.color = vacuumColor;
+        }
+        if (_plr.curMaxVacCooldown <= 0)
+        {
+            maxVacImage.color = maxVacColor;
+        }
+
+        //if (_plr.placeVacuum)
+        //{
+        //    vacuumInput.SetActive(false);
+        //}
+        //else if (_plr.placeMaxVac)
+        //{
+        //    maxVacInput.SetActive(false);
+        //}
+        //if (_plr.curVacuumCooldown <= 0)
+        //{
+        //    vacuumInput.SetActive(true);
+        //}
+        //else if (_plr.curMaxVacCooldown <= 0)
+        //{
+        //    maxVacInput.SetActive(true);
+        //}
     }
 
     #region Button Functions

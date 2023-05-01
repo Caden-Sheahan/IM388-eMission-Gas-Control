@@ -1291,8 +1291,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Your Goal is to suck up the Gas Particles around the environment. Use
-    your vacuum and machines to get rid of them before they pollute the whole house! '
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d1ba128e696c9094f9756044e1f230db, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: d1ba128e696c9094f9756044e1f230db, type: 2}
@@ -17850,7 +17849,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1287762855
 RectTransform:
   m_ObjectHideFlags: 0
@@ -19878,7 +19877,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2037519466
 RectTransform:
   m_ObjectHideFlags: 0
