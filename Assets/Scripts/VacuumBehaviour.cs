@@ -46,7 +46,7 @@ public class VacuumBehaviour : MonoBehaviour
         switch (_shape)
         {
             case VacuumShape.Capsule:
-                RaycastHit[] inRange = Physics.CapsuleCastAll(_cameraObj.position, _cameraObj.position + _cameraObj.forward, _rangeRadius / 2f, _cameraObj.forward, _plr.overcharged ? _overchargeLength : _rangeLength, _gasMask);
+                RaycastHit[] inRange = Physics.CapsuleCastAll(_cameraObj.position - _cameraObj.forward, _cameraObj.position + _cameraObj.forward, _rangeRadius / 2f, _cameraObj.forward, _plr.overcharged ? _overchargeLength : _rangeLength, _gasMask);
 
                 List<Transform> inRangeList = new();
                 foreach (RaycastHit ray in inRange)
