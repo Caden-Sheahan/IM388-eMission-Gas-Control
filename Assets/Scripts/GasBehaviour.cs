@@ -43,7 +43,7 @@ public class GasBehaviour : MonoBehaviour
     {
         if (Vector3.Distance(transform.position, _target) < 0.01f)
         {
-            if (_vacuumTarget != null)
+            if (_vacuumTarget != null && GetComponent<Collider>().enabled)
             {
                 StartCoroutine(TriggerDeath());
                 return;
@@ -139,6 +139,7 @@ public class GasBehaviour : MonoBehaviour
         _gasCenter.Stop();
         GetComponent<Collider>().enabled = false;
         transform.SetParent(null);
+        GameManager.main.GetComponent<AudioSource>().Play();
         yield return new WaitForSeconds(3.5f);
         _associatedSpawner.RemoveGas();
         Destroy(gameObject);
