@@ -9680,7 +9680,7 @@ MonoBehaviour:
   _target: {x: 0, y: 0, z: 0}
   _maxDistance: 1
   _ambientSpeed: 1
-  _activeSpeed: 3
+  _activeSpeed: 4
   _movingToVacuum: 0
   _vacuumTarget: {fileID: 0}
   _gasCenter: {fileID: 7801460867089263598}

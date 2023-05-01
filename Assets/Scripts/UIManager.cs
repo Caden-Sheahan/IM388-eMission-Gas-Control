@@ -124,6 +124,10 @@ public class UIManager : MonoBehaviour
 
     public void LoadScene(string sceneName)
     {
+        if (sceneName == "MainMenu")
+        {
+            Time.timeScale = 1;
+        }
         SceneManager.LoadScene(sceneName);
     }
 

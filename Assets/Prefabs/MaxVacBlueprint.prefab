@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1122927327060780788, guid: 7c74169af38e4e74aabf5ef7a486a6ca, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1377354443535037662, guid: 7c74169af38e4e74aabf5ef7a486a6ca, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -121,4 +125,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5c4b95f7685acd41bf7adc82aaff556, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 0}
+  floorMask:
+    serializedVersion: 2
+    m_Bits: 0

@@ -168,6 +168,7 @@ public class PlayerMovement : MonoBehaviour
 
         placeVacuum = !placeVacuum;
         bP.SetActive(placeVacuum);
+        bP.GetComponentInChildren<Renderer>().material.color = Color.red * 0.5f;
 
         if (placeMaxVac && placeVacuum)
         {
@@ -184,6 +185,7 @@ public class PlayerMovement : MonoBehaviour
 
         placeMaxVac = !placeMaxVac;
         bP.SetActive(placeMaxVac);
+        bP.GetComponentInChildren<Renderer>().material.color = Color.yellow * 0.5f;
 
         if (placeMaxVac && placeVacuum)
         {

@@ -1611,6 +1611,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1065684778}
     m_Modifications:
+    - target: {fileID: 1227977931313880359, guid: c128de634d587594085da62cbb0a8db2, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: a914acc903fa9034f875280bb46ab345, type: 2}
     - target: {fileID: 5426705113139264134, guid: c128de634d587594085da62cbb0a8db2, type: 3}
       propertyPath: m_Name
       value: Bed_02
@@ -4979,6 +4983,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 4992449028544093929, guid: 0b97f3abf6ee5ef47bea63d2df08e7d9, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: a914acc903fa9034f875280bb46ab345, type: 2}
     - target: {fileID: 5838202428447085845, guid: 0b97f3abf6ee5ef47bea63d2df08e7d9, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -5035,6 +5043,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7328429496531836763, guid: 0b97f3abf6ee5ef47bea63d2df08e7d9, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: a914acc903fa9034f875280bb46ab345, type: 2}
+    - target: {fileID: 7367845257848644278, guid: 0b97f3abf6ee5ef47bea63d2df08e7d9, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: a914acc903fa9034f875280bb46ab345, type: 2}
     - target: {fileID: 7396735264848836651, guid: 0b97f3abf6ee5ef47bea63d2df08e7d9, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -7699,6 +7715,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1065684778}
     m_Modifications:
+    - target: {fileID: 2414131206189468378, guid: bb44d6bbeae6fdd4489ce8357e48dcb1, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: a914acc903fa9034f875280bb46ab345, type: 2}
     - target: {fileID: 6344184499082899193, guid: bb44d6bbeae6fdd4489ce8357e48dcb1, type: 3}
       propertyPath: m_Name
       value: PaperBottle_01_B
@@ -8011,7 +8031,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 856441525}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a914acc903fa9034f875280bb46ab345, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -8159,6 +8179,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1065684778}
     m_Modifications:
+    - target: {fileID: 2606990005315324403, guid: 2ff42e3addb5bf24588e07dfdf470f97, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: a914acc903fa9034f875280bb46ab345, type: 2}
+    - target: {fileID: 3033169263457448572, guid: 2ff42e3addb5bf24588e07dfdf470f97, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: a914acc903fa9034f875280bb46ab345, type: 2}
     - target: {fileID: 6210608391022191221, guid: 2ff42e3addb5bf24588e07dfdf470f97, type: 3}
       propertyPath: m_Name
       value: Microwave_01_A
@@ -9497,6 +9525,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8370146801174025011, guid: d85cb55d7c323ab409c65e9c9f549792, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b65b881ae60f605458b9b18a237ad95a, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d85cb55d7c323ab409c65e9c9f549792, type: 3}
 --- !u!1001 &974519155
@@ -9964,7 +9996,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1026910152}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a914acc903fa9034f875280bb46ab345, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -12038,7 +12070,7 @@ GameObject:
   - component: {fileID: 1233057508}
   - component: {fileID: 1233057507}
   - component: {fileID: 1233057506}
-  - component: {fileID: 1233057505}
+  - component: {fileID: 1233057509}
   m_Layer: 0
   m_Name: Cylinder (1)
   m_TagString: Untagged
@@ -12046,20 +12078,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
---- !u!136 &1233057505
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1233057504}
-  m_Material: {fileID: 13400000, guid: a914acc903fa9034f875280bb46ab345, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 68.80351
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: -0.000004101008, z: -0.00000011920929}
 --- !u!23 &1233057506
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -12125,6 +12143,20 @@ Transform:
   m_Father: {fileID: 1804035610}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &1233057509
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1233057504}
+  m_Material: {fileID: 13400000, guid: a914acc903fa9034f875280bb46ab345, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1241689032
 GameObject:
   m_ObjectHideFlags: 0
@@ -14375,14 +14407,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1399304915}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -99.35, y: 0.76, z: -49.46}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0.04510146, y: 0, z: 0, w: 0.9989824}
+  m_LocalPosition: {x: -19.3021, y: 1.2411, z: -4.475}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 13
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 5.17, y: 0, z: 0}
 --- !u!1 &1422177578
 GameObject:
   m_ObjectHideFlags: 0
@@ -15401,6 +15433,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1065684778}
     m_Modifications:
+    - target: {fileID: 2476723866063443366, guid: 3def8cbe2e0a68142b5cbaa2b92574a6, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: a914acc903fa9034f875280bb46ab345, type: 2}
     - target: {fileID: 4691017871597217413, guid: 3def8cbe2e0a68142b5cbaa2b92574a6, type: 3}
       propertyPath: m_Name
       value: Toaster_01_A
@@ -18074,6 +18110,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 3936673793304256762, guid: 0092b8180174e5f44851a1a7821173e8, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: a914acc903fa9034f875280bb46ab345, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0092b8180174e5f44851a1a7821173e8, type: 3}
 --- !u!4 &1900378618 stripped
@@ -18272,7 +18312,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1906202386}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a914acc903fa9034f875280bb46ab345, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -19326,7 +19366,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2000942528}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a914acc903fa9034f875280bb46ab345, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -20297,6 +20337,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8594131524422739803, guid: bfdf17fcfabdbd74885ac20e9826a338, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: a914acc903fa9034f875280bb46ab345, type: 2}
     - target: {fileID: 8735631068556078297, guid: bfdf17fcfabdbd74885ac20e9826a338, type: 3}
       propertyPath: m_Name
       value: Table_03_A
