@@ -20356,6 +20356,7 @@ MonoBehaviour:
   selectMaxVac: {fileID: 2066441188}
   vacuumColor: {r: 0.81960785, g: 0.09411765, b: 0.09411765, a: 1}
   maxVacColor: {r: 0.8980392, g: 0.73333335, b: 0.003921569, a: 1}
+  _maxVacOutline: {fileID: 1442702414}
   pm: {fileID: 1023866655}
 --- !u!4 &2124799721
 Transform:

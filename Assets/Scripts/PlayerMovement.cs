@@ -51,6 +51,9 @@ public class PlayerMovement : MonoBehaviour
         isPaused = true;
         Cursor.lockState = CursorLockMode.None;
         Time.timeScale = 0.0f;
+
+        curVacuumCooldown = vacuumCooldown;
+        curMaxVacCooldown = maxVacCooldown;
     }
 
     public void OnMove(InputValue value)

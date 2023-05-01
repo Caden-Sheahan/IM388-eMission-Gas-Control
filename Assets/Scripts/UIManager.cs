@@ -26,6 +26,7 @@ public class UIManager : MonoBehaviour
     public Image selectMaxVac;
     public Color vacuumColor;
     public Color maxVacColor;
+    public GameObject _maxVacOutline;
 
     public PlayerMovement pm;
 
@@ -37,6 +38,8 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        _maxVacOutline.SetActive(_plr.overcharged);
+
         gasCount.value = 1 - GasManager.main.GasRatio;
         winZone.sizeDelta = new Vector2(600 * GameManager.main.WinRatio, 10);
         loseZone.sizeDelta = new Vector2(600 * GameManager.main.LoseRatio, 10);
@@ -74,7 +77,7 @@ public class UIManager : MonoBehaviour
             endTimer.SetActive(false);
         }
 
-        vacuumTimer.text = _plr.curVacuumCooldown <= 0 ? "Q" : Mathf.Ceil(_plr.curVacuumCooldown) + "";
+        vacuumTimer.text = _plr.curVacuumCooldown <= 0 && !_plr.vacuumPlaced ? "Q" : _plr.curVacuumCooldown <= 0 ? "" : Mathf.Ceil(_plr.curVacuumCooldown) + "";
         vacuumImage.color = (_plr.curVacuumCooldown <= 0 && !_plr.vacuumPlaced) || _plr.vacuumPlaced ? vacuumImage.color : Color.gray;
         maxVacTimer.text = _plr.curMaxVacCooldown <= 0 ? "E" : Mathf.Ceil(_plr.curMaxVacCooldown) + "";
         maxVacImage.color = (_plr.curMaxVacCooldown <= 0 && !_plr.maxVacPlaced) || (_plr.curMaxVacCooldown > 0 && _plr.maxVacPlaced) ? maxVacImage.color : Color.gray;
