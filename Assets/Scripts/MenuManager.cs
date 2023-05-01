@@ -87,4 +87,9 @@ public class MenuManager : MonoBehaviour
         Application.Quit();
     }
     #endregion
+
+    void Start()
+    {
+        Time.timeScale = 1;
+    }
 }
